@@ -21,7 +21,7 @@ public class TestForm {
 		properties.put("name", "timmy");
 		properties.put("email", "timmy00274672@gmail.com");
 		properties.put("category", "food");
-		properties.put("amount", "100");
+		properties.put("amount", "200");
 		formService.submitStartFormData(processDefId, properties);
 	}
 }
