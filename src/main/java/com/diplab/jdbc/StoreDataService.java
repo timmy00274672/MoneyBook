@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Set;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
@@ -12,6 +13,10 @@ public class StoreDataService implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
+		Set<String> variableNames = execution.getVariableNames();
+		for (String variable : variableNames) {
+			System.out.println(variable);
+		}
 		Connection conn = prepareDatabase();
 		Statement stmt = conn.createStatement();
 		int updatedRow = stmt

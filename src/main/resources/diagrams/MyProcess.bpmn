@@ -5,20 +5,21 @@
       <extensionElements>
         <activiti:formProperty id="name" name="Name" type="string" required="true"></activiti:formProperty>
         <activiti:formProperty id="email" name="Email address" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="category" name="Income" type="string" required="true"></activiti:formProperty>
-        <activiti:formProperty id="amount" name="Loan amount" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="category" name="category" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="amount" name="amount" type="long" required="true"></activiti:formProperty>
       </extensionElements>
     </startEvent>
     <endEvent id="endevent1" name="End"></endEvent>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow4" sourceRef="startevent1" targetRef="exclusivegateway1"></sequenceFlow>
-    <userTask id="usertask1" name="ApproveByMan">
+    <userTask id="usertask1" name="ApproveByMan" activiti:candidateGroups="accountant">
       <extensionElements>
         <activiti:formProperty id="isApproved" name="approved" type="enum" required="true">
           <activiti:value id="true" name="Yes"></activiti:value>
           <activiti:value id="false" name="No"></activiti:value>
         </activiti:formProperty>
         <activiti:formProperty id="messege" name="messege" type="string"></activiti:formProperty>
+        <activiti:formProperty id="mailFrom" name="Your mail" default="noreply@diplab.edu.tw" required="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="usertask1">
@@ -47,7 +48,7 @@ reason: ${messege}
 &lt;/pre&gt;</activiti:expression>
         </activiti:field>
         <activiti:field name="from">
-          <activiti:string><![CDATA[mam@stupid.com]]></activiti:string>
+          <activiti:expression>${mailFrom}</activiti:expression>
         </activiti:field>
       </extensionElements>
     </serviceTask>
