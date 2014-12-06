@@ -26,7 +26,7 @@ public class TestForm {
 		
 		String taskId = activitiRule.getTaskService().createTaskQuery().singleResult().getId();
 		properties.clear();
-		properties.put("isApproved", "true");
+		properties.put("isApproved", "false");
 		formService.submitTaskFormData(taskId, properties);
 	}
 }
