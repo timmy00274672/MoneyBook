@@ -21,7 +21,12 @@ public class TestForm {
 		properties.put("name", "timmy");
 		properties.put("email", "timmy00274672@gmail.com");
 		properties.put("category", "food");
-		properties.put("amount", "200");
+		properties.put("amount", "2100");
 		formService.submitStartFormData(processDefId, properties);
+		
+		String taskId = activitiRule.getTaskService().createTaskQuery().singleResult().getId();
+		properties.clear();
+		properties.put("isApproved", "true");
+		formService.submitTaskFormData(taskId, properties);
 	}
 }
