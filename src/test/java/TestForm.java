@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class TestForm {
 	@Rule
-	public ActivitiRule activitiRule = new ActivitiRule("activiti.cfg-mem.xml");
+	public ActivitiRule activitiRule = new ActivitiRule("activiti.cfg.xml");
 	
 	@Test
 	@Deployment(resources = { "diagrams/MyProcess.bpmn" })
@@ -27,6 +27,7 @@ public class TestForm {
 		String taskId = activitiRule.getTaskService().createTaskQuery().singleResult().getId();
 		properties.clear();
 		properties.put("isApproved", "false");
+		properties.put("messege", "what did you eat?");
 		formService.submitTaskFormData(taskId, properties);
 	}
 }
